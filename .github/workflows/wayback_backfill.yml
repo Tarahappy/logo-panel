@@ -1,0 +1,53 @@
+name: Wayback backfill (nightly until done)
+
+on:
+  schedule:
+    - cron: "23 6 * * *"   # every night, 06:23 UTC
+  workflow_dispatch:
+    inputs:
+      tickers:
+        description: "Optional: only these tickers (comma-separated), e.g. IBM,KO"
+        required: false
+      budget:
+        description: "Minutes of collection this run"
+        required: false
+        default: "50"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: logo-panel-data
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q libcairo2
+          pip install -r requirements.txt
+      - name: Collect archived logos and date changes
+        run: |
+          cd scripts
+          if [ -n "${{ github.event.inputs.tickers }}" ]; then
+            python wayback_logos.py --budget-minutes "${{ github.event.inputs.budget || 50 }}" --tickers "${{ github.event.inputs.tickers }}"
+          else
+            python wayback_logos.py --budget-minutes "${{ github.event.inputs.budget || 50 }}"
+          fi
+      - name: Build panel
+        run: cd scripts && python build_panel.py
+      - name: Commit data
+        run: |
+          git config user.name "logo-panel-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data reports config
+          git diff --cached --quiet || git commit -q -m "Wayback backfill $(date -u +%F)"
+          git pull -q --rebase --autostash && git push -q

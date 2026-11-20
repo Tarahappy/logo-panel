@@ -1,0 +1,10 @@
+requests>=2.31
+pandas>=2.1
+lxml>=5.0
+beautifulsoup4>=4.12
+numpy>=1.26
+pillow>=10.0
+imagehash>=4.3
+cairosvg>=2.7
+playwright>=1.44
+pytest>=8.0

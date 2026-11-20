@@ -1,0 +1,47 @@
+name: USPTO design-mark filings
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Trademark Case Files release year (folder name on the USPTO dataset page)"
+        required: false
+        default: "2023"
+  schedule:
+    - cron: "41 7 15 2 *"   # once a year, Feb 15, to pick up a new release
+
+permissions:
+  contents: write
+
+concurrency:
+  group: logo-panel-data
+  cancel-in-progress: false
+
+jobs:
+  uspto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      USPTO_API_KEY: ${{ secrets.USPTO_API_KEY }}
+      USPTO_RELEASE: ${{ github.event.inputs.release || '2023' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q libcairo2
+          pip install -r requirements.txt
+      - name: Download and filter trademark tables
+        run: cd scripts && python uspto_trademarks.py --release "$USPTO_RELEASE"
+      - name: Build panel
+        run: cd scripts && python build_panel.py
+      - name: Commit data
+        run: |
+          git config user.name "logo-panel-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/uspto data/*.csv reports
+          git diff --cached --quiet || git commit -q -m "USPTO design marks, release $USPTO_RELEASE"
+          git pull -q --rebase --autostash && git push -q

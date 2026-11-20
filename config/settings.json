@@ -1,0 +1,12 @@
+{
+  "contact_email": "lif@hope.edu",
+  "request_delay_seconds": 1.5,
+  "wayback_delay_seconds": 1.0,
+  "wayback_start_year": 2000,
+  "wayback_capture_month": 6,
+  "change_threshold_phash": 12,
+  "change_threshold_color": 0.25,
+  "max_logo_candidates": 4,
+  "min_logo_pixels": 16,
+  "live_threads": 8
+}

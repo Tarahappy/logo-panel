@@ -1,0 +1,33 @@
+name: Refresh sample (S&P 500 list + homepages)
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "11 8 5 1,4,7,10 *"   # quarterly; firms that leave the index are kept
+
+permissions:
+  contents: write
+
+concurrency:
+  group: logo-panel-data
+  cancel-in-progress: false
+
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: cd scripts && python build_sample.py
+      - name: Commit
+        run: |
+          git config user.name "logo-panel-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config
+          git diff --cached --quiet || git commit -q -m "Refresh sample $(date -u +%F)"
+          git pull -q --rebase --autostash && git push -q

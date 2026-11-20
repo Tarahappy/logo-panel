@@ -1,0 +1,44 @@
+ticker,owner_name,note
+WMT,Walmart Apollo LLC,Walmart's trademark holding company
+WMT,Wal-Mart Stores Inc,former name
+GOOGL,Google LLC,trademark owner for Alphabet
+GOOGL,Google Inc,former name
+META,Facebook Inc,former name
+META,Meta Platforms Inc,current name
+KO,Coca-Cola Company,owner name without 'The'
+DIS,Disney Enterprises Inc,Disney's trademark holding company
+PG,Procter & Gamble Company,owner name without 'The'
+IBM,International Business Machines Corporation,full legal name
+GE,General Electric Company,legacy GE trademarks
+HPQ,Hewlett-Packard Development Company LP,HP's trademark holding entity
+HPQ,Hewlett-Packard Company,former name
+AMZN,Amazon Technologies Inc,Amazon's trademark holding company
+TGT,Target Brands Inc,Target's trademark holding company
+V,Visa International Service Association,Visa's trademark owner
+MDLZ,Intercontinental Great Brands LLC,Mondelez trademark holding company
+USB,U.S. Bancorp,name normalizes to a generic prefix so matched exactly only
+USB,U.S. Bank National Association,bank subsidiary
+AIG,American International Group Inc,name normalizes to a generic prefix so matched exactly only
+HIG,Hartford Fire Insurance Company,main trademark owner
+HIG,Hartford Life Insurance Company,subsidiary
+TRV,The Travelers Indemnity Company,main trademark owner
+TRV,Travelers Property Casualty Corp,subsidiary
+TRV,Travelers Insurance Company,former subsidiary name
+PGR,Progressive Casualty Insurance Company,main trademark owner
+ALL,Allstate Insurance Company,main trademark owner
+ALL,Allstate Life Insurance Company,subsidiary
+CCL,Carnival Cruise Lines Inc,subsidiary
+SO,Southern Company Services Inc,subsidiary
+EG,Everest Reinsurance Company,subsidiary
+BX,Blackstone TM LLC,trademark holding company
+CMI,Cummins Engine Company Inc,former name
+CMI,Cummins Intellectual Property Inc,trademark holding company
+CMI,Cummins Filtration Inc,subsidiary
+TPR,Coach Services Inc,Coach brand owner
+TPR,Coach Inc,former name of Tapestry
+TPR,Kate Spade LLC,subsidiary
+BKNG,Booking.com B.V.,subsidiary
+BKNG,Priceline.com LLC,former parent name
+ORCL,Oracle International Corporation,trademark holding company
+ORCL,Oracle America Inc,subsidiary
+ADBE,Adobe Systems Incorporated,former name

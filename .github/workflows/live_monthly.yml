@@ -1,0 +1,40 @@
+name: Live logo snapshot (monthly)
+
+on:
+  schedule:
+    - cron: "17 9 1 * *"   # 1st of each month, 09:17 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: logo-panel-data
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q libcairo2
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Capture current logos
+        run: cd scripts && python live_logos.py
+      - name: Build panel
+        run: cd scripts && python build_panel.py
+      - name: Commit data
+        run: |
+          git config user.name "logo-panel-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data reports config
+          git diff --cached --quiet || git commit -q -m "Live logo snapshot $(date -u +%F)"
+          git pull -q --rebase --autostash && git push -q
