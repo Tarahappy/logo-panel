@@ -16,23 +16,20 @@ with official homepages from Wikidata. Firms that later leave the index stay in 
 | USPTO design marks | Once, then yearly | All logo trademarks filed by sample firms: filing date, intent-to-use flag, color claims, design codes. Already collected (Nov 2026) from the 2023 release, which covers filings through March 2024: 46,167 design marks for 452 firms |
 | Sample refresh | Quarterly | Updates the S&P 500 list and homepages, keeping firms that left |
 
-## Setup (once)
+## Setup
 
-1. Create a **private** GitHub repository (for example `logo-panel`) and upload these files, keeping
-   the folder structure, including `.github/workflows/` and `data/`. The repo has about 400 files
-   (mostly logo images) and the web uploader takes 100 at a time, so either use GitHub Desktop
-   (clone the empty repo, copy the folder contents in, commit, push) or upload in batches: first
-   everything except `data/logos/`, then `data/logos/live/` in groups of firm folders. On a Mac,
-   press Cmd+Shift+. in Finder to show the hidden `.github` folder.
-2. In the repo: **Settings > Actions > General > Workflow permissions**, choose
-   **Read and write permissions**, and save.
-3. **Actions** tab: enable workflows. Open **Wayback backfill**, click **Run workflow**, and enter
-   `IBM,KO,PEP,SBUX` in the tickers box for a quick test run. Check `reports/logo_timelines.html` and
-   `data/wayback_changes.csv` afterward. After that, the backfill runs nightly by itself.
-4. USPTO data are already in `data/uspto/`. To refresh them when USPTO posts a new release, add your
-   key (from [data.uspto.gov/apikey](https://data.uspto.gov/apikey)) in the repo under
-   **Settings > Secrets and variables > Actions > New repository secret**, name `USPTO_API_KEY`, then
-   run **USPTO design-mark filings** from the Actions tab with the new release year.
+Done on Nov 20, 2026: this repository (`Tarahappy/logo-panel`, private) holds the code and data, and
+its four workflows are on. Each workflow asks GitHub for permission to save its results, so the
+repository's default workflow permission does not need changing. The four-firm test (IBM, KO, PEP,
+SBUX) has run; the Wayback backfill then continues every night by itself.
+
+- **Run something now:** Actions tab, pick a workflow, **Run workflow**. The backfill accepts a ticker
+  list, a time budget, and a redo box (redo the listed tickers from scratch).
+- **USPTO refresh:** data are already in `data/uspto/`. When USPTO posts a new release, add your key
+  (from [data.uspto.gov/apikey](https://data.uspto.gov/apikey)) under **Settings > Secrets and
+  variables > Actions > New repository secret**, name `USPTO_API_KEY`, then run **USPTO design-mark
+  filings** with the new release year.
+- **Viewing logos:** download the repo (Code > Download ZIP) and open `reports/logo_timelines.html`.
 
 **Actions minutes.** A private repo gets 2,000 free minutes a month, shared across your repos.
 The backfill uses about 50 minutes a night (about 1,500 a month) and should take several weeks for
