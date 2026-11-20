@@ -90,8 +90,8 @@ def test_change_detection_and_bisection(monkeypatch):
         for m in range(1, 13):
             caps.append({"ts": f"{y}{m:02d}15000000", "original": "http://acme.com/"})
     monkeypatch.setattr(W.wayback, "monthly_captures", lambda url, y0, y1=None: caps)
-    red_f = {**compute_features(to_image(RED)), "sha1": "r"}
-    green_f = {**compute_features(to_image(GREEN)), "sha1": "g"}
+    red_f = {**compute_features(to_image(RED)), "sha1": "r", "strong": "1", "color_reliable": "1"}
+    green_f = {**compute_features(to_image(GREEN)), "sha1": "g", "strong": "1", "color_reliable": "1"}
     calls = []
 
     def fake_grab(firm, cap, known, obs_type):
@@ -102,8 +102,9 @@ def test_change_detection_and_bisection(monkeypatch):
     monkeypatch.setattr(W, "grab_capture", fake_grab)
     monkeypatch.setattr(W, "homepage_for_years", lambda firm: [("http://acme.com/", 2010, 2015)])
     obs, changes = W.process_firm({"ticker": "ACME", "company": "Acme", "homepage": "http://acme.com/"}, {})
-    assert len(changes) == 1
-    ch = changes[0]
+    shape = [c for c in changes if c["change_type"] == "shape"]
+    assert len(shape) == 1
+    ch = shape[0]
     assert ch["last_old_ts"].startswith("201303") and ch["first_new_ts"].startswith("201304")
     assert ch["old_dominant_hue"] == "red" and ch["new_dominant_hue"] == "green"
     assert len(calls) <= 6 + 5  # 6 yearly + a few bisection steps
@@ -143,3 +144,39 @@ def test_grab_capture_follows_archived_redirect(monkeypatch, tmp_path):
                          {}, "yearly")
     assert row.get("dominant_hue") == "red" and row["image_path"].endswith("x.png")
     assert ("im_", "https://www.ibm.com/us-en/img/logo.png") in seen
+
+
+def _mk(img_bytes, sha, ts, strong="1"):
+    return {**compute_features(to_image(img_bytes)), "sha1": sha, "strong": strong, "color_reliable": "1",
+            "capture_ts": ts, "image_path": sha}
+
+
+def test_one_off_pick_is_not_a_change():
+    """red, red, PROMO(green), red, red: the single green pick is ignored; no change."""
+    seq = [_mk(RED, "r", "2001"), _mk(RED, "r", "2002"), _mk(GREEN, "g", "2003"), _mk(RED, "r", "2004"),
+           _mk(RED, "r", "2005")]
+    runs = W.stable_runs(seq)
+    assert len(runs) == 1 and len(runs[0]) == 4
+
+
+def test_lasting_shape_change_is_kept():
+    seq = [_mk(RED, "r", "2001"), _mk(RED, "r", "2002"), _mk(GREEN, "g", "2003"), _mk(GREEN, "g", "2004")]
+    runs = W.stable_runs(seq)
+    assert len(runs) == 2 and runs[1][0]["sha1"] == "g"
+
+
+def test_white_and_black_versions_hash_alike():
+    from features import phash_distance
+    black = png(lambda d: d.rectangle([30, 20, 170, 60], fill=(0, 0, 0, 255)))
+    white = png(lambda d: d.rectangle([30, 20, 170, 60], fill=(255, 255, 255, 255)))
+    fb, fw = compute_features(to_image(black)), compute_features(to_image(white))
+    assert phash_distance(fb["phash"], fw["phash"]) <= 4
+
+
+def test_promo_images_skipped_and_css_logo_found():
+    html = """<style>#masthead .logo a { background: url(/i/v17/t/acme-mark.png) no-repeat; }</style>
+    <a href="/promo/x"><img src="/img/0__deep_thunder__promo__318x98.jpg" alt="Acme promo"></a>"""
+    c = find_logo_candidates(html, "https://acme.com/", "Acme")
+    urls = [x["url"] for x in c]
+    assert "https://acme.com/i/v17/t/acme-mark.png" in urls
+    assert not any("promo" in u for u in urls)

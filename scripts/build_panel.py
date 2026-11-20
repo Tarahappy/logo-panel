@@ -52,7 +52,8 @@ def change_events(obs: pd.DataFrame) -> pd.DataFrame:
     if (DATA / "wayback_changes.csv").exists():
         c = pd.read_csv(DATA / "wayback_changes.csv", dtype=str)
         for r in c.to_dict("records"):
-            rows.append({"ticker": r["ticker"], "source": "wayback", "date_lower": _ts_to_date(r["last_old_ts"]),
+            rows.append({"ticker": r["ticker"], "source": "wayback", "change_type": r.get("change_type", "shape"),
+                         "date_lower": _ts_to_date(r["last_old_ts"]),
                          "date_upper": _ts_to_date(r["first_new_ts"]), "phash_dist": r.get("phash_dist"),
                          "color_dist": r.get("color_dist"), "old_dominant_hue": r.get("old_dominant_hue"),
                          "new_dominant_hue": r.get("new_dominant_hue"), "green_share_old": r.get("green_share_old"),
@@ -66,13 +67,15 @@ def change_events(obs: pd.DataFrame) -> pd.DataFrame:
             prev = None
             for r in g.to_dict("records"):
                 if prev is not None and str(r.get("changed_vs_prev")) == "1":
-                    rows.append({"ticker": t, "source": "live", "date_lower": prev["date"], "date_upper": r["date"],
+                    rows.append({"ticker": t, "source": "live", "change_type": "shape" if (
+                                    pd.to_numeric(r.get("phash_dist_prev"), errors="coerce") or 0) >= SETTINGS["change_threshold_phash"]
+                                 else "color", "date_lower": prev["date"], "date_upper": r["date"],
                                  "phash_dist": r.get("phash_dist_prev"), "color_dist": r.get("color_dist_prev"),
                                  "old_dominant_hue": prev.get("dominant_hue"), "new_dominant_hue": r.get("dominant_hue"),
                                  "green_share_old": prev.get("green_share"), "green_share_new": r.get("green_share"),
                                  "old_image": prev.get("image_path"), "new_image": r.get("image_path")})
                 prev = r
-    ev = pd.DataFrame(rows, columns=["ticker", "source", "date_lower", "date_upper", "phash_dist", "color_dist",
+    ev = pd.DataFrame(rows, columns=["ticker", "source", "change_type", "date_lower", "date_upper", "phash_dist", "color_dist",
                                      "old_dominant_hue", "new_dominant_hue", "green_share_old", "green_share_new",
                                      "old_image", "new_image"])
     if ev.empty:
@@ -124,14 +127,19 @@ def firm_quarter(obs: pd.DataFrame, ev: pd.DataFrame) -> pd.DataFrame:
     if not ev.empty:
         e = ev.copy()
         e["quarter"] = pd.PeriodIndex(pd.to_datetime(e.date_upper), freq="Q")
+        e["is_shape"] = (e.change_type == "shape").astype(int)
+        e["is_color"] = (e.change_type == "color").astype(int)
         agg = e.groupby(["ticker", "quarter"]).agg(logo_change=("ticker", "size"),
+                                                   shape_change=("is_shape", "sum"),
+                                                   color_change=("is_color", "sum"),
                                                    change_phash_dist=("phash_dist", "first"),
                                                    change_color_dist=("color_dist", "first"),
                                                    change_green_shift=("green_shift", "first")).reset_index()
         grid = grid.merge(agg, on=["ticker", "quarter"], how="left")
-        grid["logo_change"] = grid.logo_change.fillna(0).astype(int)
+        for c in ("logo_change", "shape_change", "color_change"):
+            grid[c] = grid[c].fillna(0).astype(int)
     else:
-        grid["logo_change"] = 0
+        grid["logo_change"] = grid["shape_change"] = grid["color_change"] = 0
     marks_p = DATA / "uspto" / "firm_design_marks.csv"
     if marks_p.exists():
         m = pd.read_csv(marks_p, dtype=str)

@@ -10,14 +10,34 @@ import re
 from common import LOGOS, ROOT, SETTINGS
 from features import (FEATURE_FIELDS, compute_features, decode_data_uri, ext_for, looks_like_svg, sha1,
                       to_image, usable)
-from logo_extract import find_logo_candidates
+from logo_extract import STRONG_KINDS, css_logo_candidates, find_logo_candidates, stylesheet_links
 
 LOGO_FIELDS = ["logo_kind", "logo_url", "logo_score", "logo_reason", "n_candidates", "sha1", "image_path",
-               "color_reliable", *FEATURE_FIELDS]
+               "strong", "color_reliable", *FEATURE_FIELDS]
+STRONG_SCORE = 40
+
+
+def is_strong(kind: str, score, reason: str) -> bool:
+    """A confident logo pick: a logo-marked image, inline SVG, schema.org logo or CSS logo background.
+    Weak fallbacks (old-site guesses) and app icons are kept but not used to detect changes."""
+    try:
+        return kind in STRONG_KINDS and float(score) >= STRONG_SCORE and "weak" not in (reason or "")
+    except (TypeError, ValueError):
+        return False
 
 
 def best_logo(html: str, base_url: str, company: str, fetch) -> tuple[dict, bytes | None, str]:
     cands = find_logo_candidates(html, base_url, company, max_n=SETTINGS.get("max_logo_candidates", 4))
+    if not any(c["kind"] in STRONG_KINDS and c["score"] >= 30 for c in cands):
+        # the logo may be a background image defined in the site's stylesheet (common 2005-2020)
+        css_cands = []
+        for href in stylesheet_links(html, base_url):
+            st, content, _ = fetch(href)
+            if st == 200 and content:
+                css_cands.extend(css_logo_candidates(content.decode("utf-8", "replace"), href))
+            if css_cands:
+                break
+        cands = sorted(css_cands[:3], key=lambda c: -c["score"]) + cands
     info: dict = {"n_candidates": len(cands)}
     fallback = None  # a white-on-transparent variant (made for dark headers), used only if nothing better
     for c in cands:
@@ -46,6 +66,7 @@ def best_logo(html: str, base_url: str, company: str, fetch) -> tuple[dict, byte
                    logo_url=("inline-svg" if c["kind"] == "svg-inline" else (url[:60] + "...") if url.startswith("data:") else url),
                    sha1=sha1(raw))
         rec["color_reliable"] = 0 if svg_inherits_color(raw, mime, url) else 1
+        rec["strong"] = int(is_strong(c["kind"], c["score"], c["reason"]))
         if is_white_variant(feats):
             rec["logo_reason"] += ",white-variant"
             rec["color_reliable"] = 0

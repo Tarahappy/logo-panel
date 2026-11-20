@@ -8,5 +8,6 @@
   "change_threshold_color": 0.25,
   "max_logo_candidates": 4,
   "min_logo_pixels": 16,
-  "live_threads": 8
+  "live_threads": 8,
+  "wayback_workers": 3
 }

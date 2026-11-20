@@ -12,6 +12,11 @@ on:
         description: "Minutes of collection this run"
         required: false
         default: "50"
+      redo:
+        description: "Redo the listed tickers from scratch (only with tickers)"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -38,7 +43,9 @@ jobs:
         run: |
           cd scripts
           if [ -n "${{ github.event.inputs.tickers }}" ]; then
-            python wayback_logos.py --budget-minutes "${{ github.event.inputs.budget || 50 }}" --tickers "${{ github.event.inputs.tickers }}"
+            REDO=""
+            if [ "${{ github.event.inputs.redo }}" = "true" ]; then REDO="--redo"; fi
+            python wayback_logos.py --budget-minutes "${{ github.event.inputs.budget || 50 }}" --tickers "${{ github.event.inputs.tickers }}" $REDO
           else
             python wayback_logos.py --budget-minutes "${{ github.event.inputs.budget || 50 }}"
           fi

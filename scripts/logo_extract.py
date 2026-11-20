@@ -22,9 +22,12 @@ BAD_WORDS = re.compile(
     r"facebook|twitter|linkedin|youtube|instagram|tiktok|pinterest|social|share|award|partner|"
     r"client|customer|sponsor|badge|certif|app-?store|google-?play|cookie|onetrust|trustarc|"
     r"truste|bbb|payment|visa-|mastercard|paypal|flag|country|language|avatar|icon-search|"
-    r"hamburger|menu-icon|close|arrow|chevron|play-button|spinner|loader|pixel|1x1|spacer|blank",
+    r"hamburger|menu-icon|close|arrow|chevron|play-button|spinner|loader|pixel|1x1|spacer|blank|"
+    r"promo|banner|hero|campaign|carousel|slide|thumb|photo|advert|marquee|\d{3,4}x\d{2,4}",
     re.I,
 )
+CSS_RULE = re.compile(r"([^{}]+)\{([^{}]*)\}", re.S)
+CSS_URL = re.compile(r"url\(\s*['\"]?([^'\")]+)['\"]?\s*\)", re.I)
 LOGO_WORD = re.compile(r"logo|brand|wordmark|logotype|site-?mark|masthead", re.I)
 HEADER_WORD = re.compile(r"header|masthead|navbar|nav-?bar|site-?nav|top-?bar|global-?nav", re.I)
 FOOTER_WORD = re.compile(r"footer", re.I)
@@ -123,9 +126,22 @@ def find_logo_candidates(html: str, base_url: str, company: str = "", max_n: int
             elif isinstance(obj, list):
                 stack.extend(obj)
 
+    # 1b. logos set as CSS backgrounds in <style> blocks or inline styles
+    for st in soup.find_all("style"):
+        cands.extend(css_logo_candidates(st.get_text() or "", base))
+    for el in soup.find_all(style=re.compile(r"url\(", re.I)):
+        if LOGO_WORD.search(" ".join(el.get("class") or []) + " " + (el.get("id") or "")):
+            for u in CSS_URL.findall(el["style"]):
+                if not u.startswith("data:image/gif"):
+                    cands.append({"kind": "css-bg", "url": urljoin(base, u.strip()), "score": 40,
+                                  "reason": "inline-style logo background"})
+
     # 2. <img> and inline <svg>
     weak: list[dict] = []
+    img_index = 0
     for el in soup.find_all(["img", "svg", "image"]):
+        if el.name == "img":
+            img_index += 1
         own = _attrs_text(el)
         anc, in_header, in_footer, links_home = _ancestor_text(el)
         score, reasons = 0, []
@@ -145,8 +161,9 @@ def find_logo_candidates(html: str, base_url: str, company: str = "", max_n: int
         if BAD_WORDS.search(own) or BAD_WORDS.search(anc[:300]):
             score -= 40; reasons.append("bad-word")
         if score < 25:
-            # older table-based sites: a linked image whose alt names the firm, early in the page
-            if el.name == "img" and score >= 10 and ("name-in-alt" in reasons or "links-home" in reasons):
+            # older table-based sites: an early image, linked to the homepage, whose alt names the firm
+            if (el.name == "img" and img_index <= 8 and "links-home" in reasons and "name-in-alt" in reasons
+                    and "bad-word" not in reasons):
                 src = _best_src(el)
                 if src and not src.startswith("data:"):
                     weak.append({"kind": "img", "url": urljoin(base, src), "score": score,
@@ -172,7 +189,7 @@ def find_logo_candidates(html: str, base_url: str, company: str = "", max_n: int
             else:
                 cands.append({"kind": "img", "url": urljoin(base, src), "score": score, "reason": ",".join(reasons)})
 
-    if not any(c["kind"] in ("img", "svg-inline", "img-data") for c in cands):
+    if not any(c["kind"] in STRONG_KINDS for c in cands):
         cands.extend(weak[:2])
 
     # 3. icons (fallback only)
@@ -204,6 +221,43 @@ def find_logo_candidates(html: str, base_url: str, company: str = "", max_n: int
         first["score"] += 5
     out.sort(key=lambda c: (-c["score"], c["order"]))
     return out[:max_n]
+
+
+def css_logo_candidates(css: str, base: str) -> list[dict]:
+    """Background images in CSS rules whose selector or URL mentions a logo (masthead sprites, etc.)."""
+    out = []
+    for sel, body in CSS_RULE.findall(css[:400000]):
+        if "url(" not in body.lower():
+            continue
+        sel_logo = bool(LOGO_WORD.search(sel))
+        for u in CSS_URL.findall(body):
+            u = u.strip()
+            if u.startswith("data:image/gif") or u.lower().endswith((".woff", ".woff2", ".ttf", ".eot")):
+                continue
+            if sel_logo or LOGO_WORD.search(u):
+                if BAD_WORDS.search(u) or BAD_WORDS.search(sel[:200]):
+                    continue
+                out.append({"kind": "css-bg", "url": urljoin(base, u), "score": 38 if sel_logo else 30,
+                            "reason": "css background " + ("selector" if sel_logo else "url")})
+    return out
+
+
+def stylesheet_links(html: str, base: str, max_n: int = 3) -> list[str]:
+    """Same-site stylesheets, in page order (used only when the page itself shows no logo)."""
+    soup = BeautifulSoup(html, "lxml")
+    out = []
+    for link in soup.find_all("link", href=True):
+        rel = " ".join(link.get("rel") or []).lower()
+        if "stylesheet" in rel:
+            u = urljoin(base, link["href"])
+            if same_site(u, base) or "logo" in u.lower() or "masthead" in u.lower():
+                out.append(u)
+        if len(out) >= max_n:
+            break
+    return out
+
+
+STRONG_KINDS = {"jsonld", "img", "svg-inline", "img-data", "css-bg"}
 
 
 def same_site(url: str, base: str) -> bool:

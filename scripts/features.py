@@ -162,17 +162,26 @@ def compute_features(img: Image.Image) -> dict:
     out["mean_lightness"] = round(float(hsv[:, 2].mean()), 4)
     out["n_colors"] = _n_colors(fg)
 
-    # complexity on a white-composited grayscale version
+    # Shape image: the logo's silhouette (dark on white), cropped and padded, so that the same logo
+    # in white, black or color, or with different margins, hashes alike. Opaque images with no
+    # near-white background (badge logos) fall back to their grayscale version.
     white = Image.new("RGBA", img.size, (255, 255, 255, 255))
-    gray = Image.alpha_composite(white, img).convert("L")
-    gray = ImageOps.pad(gray, (256, 256), color=255)
-    edges = np.asarray(gray.filter(ImageFilter.FIND_EDGES))
+    transparent = (flat[:, 3] <= 128).mean() > 0.05
+    if transparent or bg is not None:
+        shape = Image.fromarray(np.where(fg_mask.reshape(h, w), 0, 255).astype(np.uint8), "L")
+    else:
+        shape = Image.alpha_composite(white, img).convert("L")
+    bbox = ImageOps.invert(shape).getbbox()
+    if bbox:
+        shape = shape.crop(bbox)
+    shape = ImageOps.pad(shape, (256, 256), color=255)
+    edges = np.asarray(shape.filter(ImageFilter.FIND_EDGES))
     out["edge_density"] = round(float((edges > 40).mean()), 4)
-    out["compressed_kb"] = round(len(zlib.compress(gray.tobytes(), 9)) / 1024, 2)
+    out["compressed_kb"] = round(len(zlib.compress(shape.tobytes(), 9)) / 1024, 2)
     if imagehash is not None:
         rgb_white = Image.alpha_composite(white, img).convert("RGB")
-        out["phash"] = str(imagehash.phash(rgb_white))
-        out["dhash"] = str(imagehash.dhash(rgb_white))
+        out["phash"] = str(imagehash.phash(shape))
+        out["dhash"] = str(imagehash.dhash(shape))
         out["colorhash"] = str(imagehash.colorhash(rgb_white, binbits=3))
     else:
         out["phash"] = out["dhash"] = out["colorhash"] = ""
