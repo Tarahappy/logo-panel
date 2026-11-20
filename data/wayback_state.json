@@ -1,9 +1,30 @@
 {
  "IBM": {
-  "changes": 15,
+  "changes": 1,
   "on": "2026-11-20",
   "status": "done",
   "years": 27,
-  "years_with_logo": 26
+  "years_confident_logo": 9
+ },
+ "KO": {
+  "changes": 1,
+  "on": "2026-11-20",
+  "status": "done",
+  "years": 23,
+  "years_confident_logo": 6
+ },
+ "PEP": {
+  "changes": 1,
+  "on": "2026-11-20",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "SBUX": {
+  "changes": 3,
+  "on": "2026-11-20",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 8
  }
 }
