@@ -73,17 +73,18 @@ Key panel variables: `logo_change` (with `shape_change` and `color_change`), `ch
 - **Color.** Shares of foreground pixels by hue family; a near-white background is removed, a colored
   badge is kept. `color_reliable = 0` marks SVGs whose color comes from the site's stylesheet, and
   white versions made for dark headers. Use shape measures, not color, for those rows.
-- **Shape.** Logos are compared by silhouette (perceptual hash of the cropped shape), so white, black
-  and colored versions of the same logo match.
+- **Shape.** Logos are compared by a perceptual hash of the cropped logo in grayscale, with white
+  logos flipped to dark and boxed logos reduced to what is drawn inside the box, so white, black,
+  colored and boxed versions of one logo match while a redrawn logo does not.
 - **A shape change** = a new logo shape (hash distance at least 12 of 64) that is seen in at least two
   yearly captures (the most recent capture excepted). A shape seen only once is treated as a one-off
   pick and ignored, and a mark that appears and then gives way to the earlier logo again (A-B-A,
   such as a holiday or rewards mark) is treated as temporary. The firm's live logo closes each
   history, so the latest archived picks are checked against a known-good logo. Shape changes are
   dated to the month by bisecting monthly captures.
-- **Expect false candidates.** In the four-firm test (IBM, KO, PEP, SBUX), about 3 of 8 detected
-  changes were real (Starbucks 2011, PepsiCo 2025, the Coca-Cola corporate lockup); the rest came
-  from site elements picked as the logo (a masthead banner, a "Brands" tile, a rewards star).
+- **Expect false candidates.** In the four-firm test (IBM, KO, PEP, SBUX), 3 of 6 detected changes
+  were real (Starbucks 2011, PepsiCo 2025, the Coca-Cola corporate lockup); the rest came from site
+  elements picked as the logo (an IBM masthead banner and boxed variant, a Coca-Cola "Brands" tile).
   `old_run_years`, `new_run_years` and the nearest USPTO filing help rank candidates for review.
 - **A color change** = same shape, with a lasting switch in color profile (distance at least 0.25,
   both versions color-reliable and each seen at least twice). Dated to the yearly window.

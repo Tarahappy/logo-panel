@@ -196,3 +196,11 @@ def test_logo_in_black_box_matches_plain_logo():
     plain = png(lambda d: d.rectangle([60, 25, 140, 55], fill=(0, 0, 0, 255)))
     boxed = png(lambda d: d.rectangle([60, 25, 140, 55], fill=(255, 255, 255, 255)), bg=(0, 0, 0, 255))
     assert phash_distance(compute_features(to_image(plain))["phash"], compute_features(to_image(boxed))["phash"]) <= 4
+
+
+def test_same_outline_different_inside_is_a_change():
+    """Two round badges with different inner drawings must not hash alike (Starbucks 2011)."""
+    from features import phash_distance
+    a = png(lambda d: (d.ellipse([20, 0, 100, 80], fill=(0, 112, 74, 255)), d.rectangle([40, 30, 80, 50], fill=(255, 255, 255, 255))), size=(120, 80))
+    b = png(lambda d: (d.ellipse([20, 0, 100, 80], fill=(0, 112, 74, 255)), d.polygon([(60, 10), (90, 70), (30, 70)], fill=(255, 255, 255, 255))), size=(120, 80))
+    assert phash_distance(compute_features(to_image(a))["phash"], compute_features(to_image(b))["phash"]) >= 12

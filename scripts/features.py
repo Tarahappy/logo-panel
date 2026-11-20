@@ -178,7 +178,17 @@ def compute_features(img: Image.Image) -> dict:
     white = Image.new("RGBA", img.size, (255, 255, 255, 255))
     transparent = (flat[:, 3] <= 128).mean() > 0.05
     if transparent or bg is not None:
-        shape = Image.fromarray(np.where(fg_mask.reshape(h, w), 0, 255).astype(np.uint8), "L")
+        # keep the inner detail (grayscale on white); a white logo is drawn on black and inverted,
+        # so white and dark versions of one logo look alike
+        if out["mean_lightness"] > 0.8 and out["neutral_share"] > 0.9:
+            black = Image.new("RGBA", img.size, (0, 0, 0, 255))
+            shape = ImageOps.invert(Image.alpha_composite(black, img).convert("L"))
+        else:
+            shape = Image.alpha_composite(white, img).convert("L")
+        mask_img = Image.fromarray(np.where(fg_mask.reshape(h, w), 0, 255).astype(np.uint8), "L")
+        fb = ImageOps.invert(mask_img).getbbox()
+        if fb:
+            shape = shape.crop(fb)
     elif raw_bg is not None:
         # solid colored or dark box: for shape only, compare what is drawn inside the box
         inner = np.abs(flat[:, :3].astype(float) - raw_bg).max(axis=1) > 40
