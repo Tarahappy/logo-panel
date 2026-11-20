@@ -18,7 +18,7 @@ with official homepages from Wikidata. Firms that later leave the index stay in 
 
 ## Setup
 
-Done on Nov 20, 2026: this repository (`Tarahappy/logo-panel`, private) holds the code and data, and
+Done on Nov 20, 2026: this repository (`Tarahappy/logo-panel`, public since Nov 20) holds the code and data, and
 its four workflows are on. Each workflow asks GitHub for permission to save its results, so the
 repository's default workflow permission does not need changing. The four-firm test (IBM, KO, PEP,
 SBUX) has run; the Wayback backfill then continues every night by itself.
@@ -88,7 +88,9 @@ Key panel variables: `logo_change` (with `shape_change` and `color_change`), `ch
 - **A color change** = same shape, with a lasting switch in color profile (distance at least 0.25,
   both versions color-reliable and each seen at least twice). Dated to the yearly window.
 - Thresholds are in `config/settings.json`. Changes are dated between `last_old_ts` and
-  `first_new_ts`; `months_uncertain` reports the gap.
+  `first_new_ts`; `months_uncertain` reports the gap. Only captures that clearly show the old or the
+  new logo narrow the window, so it can stay wide (Starbucks: June 2005 to June 2012, true date 2011)
+  rather than be narrowed wrongly; USPTO filing dates and hand checks can pin it down.
 - **Validate before analysis.** Automated detection will make errors (a site redesign can switch which
   image is picked). Code each row of `data/logo_change_events.csv` as 1 (real change), 0 (false), or 2
   (minor refresh), using the contact sheet. The column survives rebuilds.
