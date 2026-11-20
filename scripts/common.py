@@ -97,8 +97,18 @@ def read_csv(path: Path) -> list[dict]:
 
 
 def append_rows(path: Path, rows: list[dict], fieldnames: list[str]) -> None:
+    """Append rows; if the file's columns differ from fieldnames (code changed), rewrite it with
+    fieldnames first so every column keeps its name."""
     path.parent.mkdir(parents=True, exist_ok=True)
     new = not path.exists() or path.stat().st_size == 0
+    if not new:
+        with path.open(newline="", encoding="utf-8") as f:
+            header = next(csv.reader(f), [])
+        if header != fieldnames:
+            old = read_csv(path)
+            cols = fieldnames + [c for c in header if c not in fieldnames]
+            write_rows(path, old, cols)
+            fieldnames = cols
     with path.open("a", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
         if new:

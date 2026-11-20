@@ -180,3 +180,19 @@ def test_promo_images_skipped_and_css_logo_found():
     urls = [x["url"] for x in c]
     assert "https://acme.com/i/v17/t/acme-mark.png" in urls
     assert not any("promo" in u for u in urls)
+
+
+def test_append_rows_handles_new_columns(tmp_path):
+    from common import append_rows, read_csv
+    p = tmp_path / "x.csv"
+    append_rows(p, [{"a": 1, "b": 2}], ["a", "b"])
+    append_rows(p, [{"a": 3, "c": 4, "b": 5}], ["a", "c", "b"])
+    rows = read_csv(p)
+    assert rows[0] == {"a": "1", "c": "", "b": "2"} and rows[1] == {"a": "3", "c": "4", "b": "5"}
+
+
+def test_logo_in_black_box_matches_plain_logo():
+    from features import phash_distance
+    plain = png(lambda d: d.rectangle([60, 25, 140, 55], fill=(0, 0, 0, 255)))
+    boxed = png(lambda d: d.rectangle([60, 25, 140, 55], fill=(255, 255, 255, 255)), bg=(0, 0, 0, 255))
+    assert phash_distance(compute_features(to_image(plain))["phash"], compute_features(to_image(boxed))["phash"]) <= 4

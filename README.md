@@ -53,30 +53,45 @@ finish in about a week.
 | `config/skip_tickers.csv` | Duplicate share classes left out |
 | `data/live_observations.csv` | One row per firm per monthly snapshot |
 | `data/wayback_observations.csv` | One row per archived capture fetched (`obs_type` yearly or refine) |
-| `data/wayback_changes.csv` | Each dated historical change: last capture with the old logo, first with the new |
+| `data/wayback_changes.csv` | Each dated historical change (`change_type` shape or color): last capture with the old logo, first with the new |
 | `data/logos/` | Each unique logo image, stored once per firm |
 | `data/uspto/` | Design marks, design codes, color statements, and the owner-name match list to review |
 | `data/logo_change_events.csv` | **All detected changes** (historical and live), nearest USPTO filing, and blank `validated` and `notes` columns for hand coding |
 | `data/panel_firm_quarter.csv` | **Firm-quarter panel for analysis** |
 | `reports/logo_timelines.html` | Contact sheet of every firm's logos over time (download the repo to view the images) |
 
-Key panel variables: `logo_change`, `change_phash_dist` (shape change, 0 to 64), `change_color_dist`
+Key panel variables: `logo_change` (with `shape_change` and `color_change`), `change_phash_dist` (shape change, 0 to 64), `change_color_dist`
 (0 to 1), `change_green_shift`, current-logo color shares (`red_share` ... `purple_share`,
 `neutral_share`), `dominant_hue`, `n_colors`, `edge_density`, `compressed_kb` (complexity),
 `color_reliable`, `n_design_filings`, `n_design_itu_filings`, `n_changes_to_date`.
 
 ## Method notes
 
-- **Finding the logo.** In order: the schema.org Organization logo, then an image or inline SVG
-  marked as a logo in the header or linked to the homepage. Partner, social, award and footer images
-  are penalized. Older table-based sites fall back to a linked image whose alt text names the firm.
-  App icons are a last resort (`logo_kind = icon`).
+- **Finding the logo.** In order: the schema.org Organization logo, logos set as CSS backgrounds,
+  then an image or inline SVG marked as a logo in the header or linked to the homepage. When the page
+  shows none, the site's stylesheets are checked for a logo background. Partner, social, award, promo
+  and banner images are skipped. Older table-based sites fall back to an early linked image whose alt
+  text names the firm. App icons are a last resort (`logo_kind = icon`). `strong = 1` marks confident
+  picks; only those are used to detect changes.
 - **Color.** Shares of foreground pixels by hue family; a near-white background is removed, a colored
   badge is kept. `color_reliable = 0` marks SVGs whose color comes from the site's stylesheet, and
   white versions made for dark headers. Use shape measures, not color, for those rows.
-- **A change** = a different image file whose perceptual-hash distance is at least 12 or whose color
-  distance is at least 0.25 (both in `config/settings.json`). Re-encoded copies of the same logo do not
-  count. Changes are dated between `last_old_ts` and `first_new_ts`; `months_uncertain` reports the gap.
+- **Shape.** Logos are compared by silhouette (perceptual hash of the cropped shape), so white, black
+  and colored versions of the same logo match.
+- **A shape change** = a new logo shape (hash distance at least 12 of 64) that is seen in at least two
+  yearly captures (the most recent capture excepted). A shape seen only once is treated as a one-off
+  pick and ignored, and a mark that appears and then gives way to the earlier logo again (A-B-A,
+  such as a holiday or rewards mark) is treated as temporary. The firm's live logo closes each
+  history, so the latest archived picks are checked against a known-good logo. Shape changes are
+  dated to the month by bisecting monthly captures.
+- **Expect false candidates.** In the four-firm test (IBM, KO, PEP, SBUX), about 3 of 8 detected
+  changes were real (Starbucks 2011, PepsiCo 2025, the Coca-Cola corporate lockup); the rest came
+  from site elements picked as the logo (a masthead banner, a "Brands" tile, a rewards star).
+  `old_run_years`, `new_run_years` and the nearest USPTO filing help rank candidates for review.
+- **A color change** = same shape, with a lasting switch in color profile (distance at least 0.25,
+  both versions color-reliable and each seen at least twice). Dated to the yearly window.
+- Thresholds are in `config/settings.json`. Changes are dated between `last_old_ts` and
+  `first_new_ts`; `months_uncertain` reports the gap.
 - **Validate before analysis.** Automated detection will make errors (a site redesign can switch which
   image is picked). Code each row of `data/logo_change_events.csv` as 1 (real change), 0 (false), or 2
   (minor refresh), using the contact sheet. The column survives rebuilds.

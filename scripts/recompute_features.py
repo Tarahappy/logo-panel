@@ -11,7 +11,7 @@ import pandas as pd
 
 from common import DATA, ROOT
 from features import FEATURE_FIELDS, compute_features, to_image
-from grab import is_white_variant, svg_inherits_color
+from grab import is_strong, is_white_variant, svg_inherits_color
 
 
 def main() -> None:
@@ -21,7 +21,7 @@ def main() -> None:
         if not p.exists():
             continue
         df = pd.read_csv(p, dtype=str)
-        for c in FEATURE_FIELDS + ["color_reliable"]:
+        for c in FEATURE_FIELDS + ["color_reliable", "strong"]:
             if c not in df:
                 df[c] = None
         for i, path in df["image_path"].items():
@@ -40,6 +40,8 @@ def main() -> None:
                 cache[path] = feats
             for k, v in cache[path].items():
                 df.at[i, k] = "" if v is None else str(v)
+            df.at[i, "strong"] = str(int(is_strong(df.at[i, "logo_kind"], df.at[i, "logo_score"],
+                                                   df.at[i, "logo_reason"], cache[path].get("photo_like", 0))))
         df.to_csv(p, index=False)
         print(f"{name}: recomputed {df.image_path.notna().sum()} rows")
 

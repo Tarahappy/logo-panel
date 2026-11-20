@@ -34,7 +34,7 @@ FEATURE_FIELDS = [
     "width", "height", "aspect", "fg_share", "neutral_share",
     *[f"{h}_share" for h, _, _ in HUES],
     "dominant_hue", "mean_saturation", "mean_lightness", "n_colors",
-    "edge_density", "compressed_kb", "phash", "dhash", "colorhash",
+    "edge_density", "compressed_kb", "color_spread", "photo_like", "phash", "dhash", "colorhash",
 ]
 
 
@@ -130,6 +130,7 @@ def compute_features(img: Image.Image) -> dict:
     flat = arr.reshape(-1, 4)
     alpha = flat[:, 3] > 128
     bg = _border_color(arr)
+    raw_bg = bg
     # only a near-white border is treated as background; a colored border is usually part of a badge logo
     if bg is not None and bg.min() < 215:
         bg = None
@@ -161,6 +162,15 @@ def compute_features(img: Image.Image) -> dict:
     out["mean_saturation"] = round(float(hsv[:, 1].mean()), 4)
     out["mean_lightness"] = round(float(hsv[:, 2].mean()), 4)
     out["n_colors"] = _n_colors(fg)
+    # photos and banners spread over many colors; flat logos sit on a few (plus anti-aliasing)
+    if len(fg):
+        q = (fg // 16).astype(int)
+        _, cnt = np.unique(q[:, 0] * 256 + q[:, 1] * 16 + q[:, 2], return_counts=True)
+        top = np.sort(cnt)[::-1][:10].sum()
+        out["color_spread"] = round(1 - top / len(fg), 4)
+    else:
+        out["color_spread"] = 0.0
+    out["photo_like"] = int(out["color_spread"] > 0.25)
 
     # Shape image: the logo's silhouette (dark on white), cropped and padded, so that the same logo
     # in white, black or color, or with different margins, hashes alike. Opaque images with no
@@ -169,6 +179,11 @@ def compute_features(img: Image.Image) -> dict:
     transparent = (flat[:, 3] <= 128).mean() > 0.05
     if transparent or bg is not None:
         shape = Image.fromarray(np.where(fg_mask.reshape(h, w), 0, 255).astype(np.uint8), "L")
+    elif raw_bg is not None:
+        # solid colored or dark box: for shape only, compare what is drawn inside the box
+        inner = np.abs(flat[:, :3].astype(float) - raw_bg).max(axis=1) > 40
+        shape = Image.fromarray(np.where(inner.reshape(h, w), 0, 255).astype(np.uint8), "L") if inner.mean() > 0.01 \
+            else Image.alpha_composite(white, img).convert("L")
     else:
         shape = Image.alpha_composite(white, img).convert("L")
     bbox = ImageOps.invert(shape).getbbox()

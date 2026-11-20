@@ -1,4 +1,4 @@
-ticker,company,last_old_ts,first_new_ts,months_between,old_image,new_image,phash_dist,color_dist,old_dominant_hue,new_dominant_hue,green_share_old,green_share_new,blue_share_old,blue_share_new,n_colors_old,n_colors_new,detected_on
+ticker,company,change_type,last_old_ts,first_new_ts,months_between,old_image,new_image,phash_dist,color_dist,old_dominant_hue,new_dominant_hue,green_share_old,green_share_new,blue_share_old,blue_share_new,n_colors_old,n_colors_new,old_run_years,new_run_years,detected_on
 IBM,IBM,shape,20070601122806,20070701171307,1,data/logos/wayback/IBM/20050601_33f382b2.gif,data/logos/wayback/IBM/20080602_46fa4604.gif,40,0.0192,neutral,neutral,0.0,0.0,0.0192,0.0,2,2,3,4,2026-11-20
 PEP,PepsiCo,shape,20180602082753,20251101005159,89,data/logos/wayback/PEP/20140602_2be7fbbf.png,data/logos/wayback/PEP/20260601_9f855809.png,28,0.3037,blue,blue,0.0313,0.1638,0.8862,0.6353,1,5,12,1,2026-11-20
 KO,Coca-Cola Company (The),shape,20090201132217,20221201152857,166,data/logos/wayback/KO/20090201_2ee4ffb5.png,data/logos/wayback/KO/20230601_76bdd87c.svg,30,0.9327,red,neutral,0.0,0.0,0.0,0.0,4,1,2,4,2026-11-20

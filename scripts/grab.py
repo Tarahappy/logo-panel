@@ -14,16 +14,22 @@ from logo_extract import STRONG_KINDS, css_logo_candidates, find_logo_candidates
 
 LOGO_FIELDS = ["logo_kind", "logo_url", "logo_score", "logo_reason", "n_candidates", "sha1", "image_path",
                "strong", "color_reliable", *FEATURE_FIELDS]
-STRONG_SCORE = 40
+STRONG_SCORE = 30
 
 
-def is_strong(kind: str, score, reason: str) -> bool:
-    """A confident logo pick: a logo-marked image, inline SVG, schema.org logo or CSS logo background.
-    Weak fallbacks (old-site guesses) and app icons are kept but not used to detect changes."""
+def is_strong(kind: str, score, reason: str, photo_like=0) -> bool:
+    """A confident logo pick: a logo-marked image, schema.org logo, CSS logo background, or an inline
+    SVG that is itself labeled as the logo. Weak fallbacks
+    (old-site guesses) and app icons are kept but not used to detect changes."""
+    reason = reason or ""
     try:
-        return kind in STRONG_KINDS and float(score) >= STRONG_SCORE and "weak" not in (reason or "")
+        if kind not in STRONG_KINDS or float(score) < STRONG_SCORE or "weak" in reason:
+            return False
     except (TypeError, ValueError):
         return False
+    if kind == "svg-inline" and "logo-attr" not in reason and "name-in-alt" not in reason:
+        return False  # e.g. an arrow or menu icon that merely sits inside the logo link
+    return True
 
 
 def best_logo(html: str, base_url: str, company: str, fetch) -> tuple[dict, bytes | None, str]:
@@ -66,7 +72,7 @@ def best_logo(html: str, base_url: str, company: str, fetch) -> tuple[dict, byte
                    logo_url=("inline-svg" if c["kind"] == "svg-inline" else (url[:60] + "...") if url.startswith("data:") else url),
                    sha1=sha1(raw))
         rec["color_reliable"] = 0 if svg_inherits_color(raw, mime, url) else 1
-        rec["strong"] = int(is_strong(c["kind"], c["score"], c["reason"]))
+        rec["strong"] = int(is_strong(c["kind"], c["score"], c["reason"], feats.get("photo_like", 0)))
         if is_white_variant(feats):
             rec["logo_reason"] += ",white-variant"
             rec["color_reliable"] = 0

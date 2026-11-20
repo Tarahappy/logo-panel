@@ -129,13 +129,28 @@ def stable_runs(picks: list[dict]) -> list[list[dict]]:
         else:
             runs.append([r])
     kept = [run for i, run in enumerate(runs) if len(run) >= 2 or i == len(runs) - 1]
-    merged: list[list[dict]] = []
-    for run in kept:
-        if merged and same_shape(merged[-1][-1], run[0]):
-            merged[-1].extend(run)
-        else:
-            merged.append(run)
+    merged = _merge(kept)
+    # A-B-A: a mark that appears and then gives way to the earlier logo again (holiday, campaign,
+    # rewards mark) is temporary, not a logo change
+    changed = True
+    while changed and len(merged) >= 3:
+        changed = False
+        for i in range(1, len(merged) - 1):
+            if same_shape(merged[i - 1][-1], merged[i + 1][0]):
+                merged = _merge(merged[:i] + merged[i + 1:])
+                changed = True
+                break
     return merged
+
+
+def _merge(runs: list[list[dict]]) -> list[list[dict]]:
+    out: list[list[dict]] = []
+    for run in runs:
+        if out and same_shape(out[-1][-1], run[0]):
+            out[-1].extend(run)
+        else:
+            out.append(list(run))
+    return out
 
 
 def color_segments(run: list[dict]) -> list[list[dict]]:
@@ -200,14 +215,18 @@ def process_firm(firm: dict, known: dict) -> tuple[list[dict], list[dict]]:
     yearly = [min(v, key=lambda c: abs(int(c["ts"][4:6]) - month)) for _, v in sorted(by_year.items())]
 
     obs = [grab_capture(firm, c, known, "yearly") for c in yearly]
-    runs = stable_runs([r for r in obs if strong(r)])
+    picks = [r for r in obs if strong(r)]
+    anchor = live_anchor(firm["ticker"])
+    if anchor and (not picks or anchor["capture_ts"] > picks[-1]["capture_ts"]):
+        picks.append(anchor)  # the current logo, captured live, closes the series
+    runs = stable_runs(picks)
     ts_index = {c["ts"]: i for i, c in enumerate(caps)}
     changes = []
 
     # shape changes, dated by bisection over the monthly captures
     for old_run, new_run in zip(runs, runs[1:]):
         a, b = old_run[-1], new_run[0]
-        lo, hi = ts_index[a["capture_ts"]], ts_index[b["capture_ts"]]
+        lo, hi = ts_index[a["capture_ts"]], ts_index.get(b["capture_ts"], len(caps))
         tried: set[int] = set()
         while hi - lo > 1:
             mid = (lo + hi) // 2
@@ -225,7 +244,8 @@ def process_firm(firm: dict, known: dict) -> tuple[list[dict], list[dict]]:
                 hi = mid
             else:
                 lo = mid
-        changes.append(change_row(firm, "shape", a, b, caps[lo]["ts"], caps[hi]["ts"], old_run, new_run))
+        first_new = caps[hi]["ts"] if hi < len(caps) else b["capture_ts"]
+        changes.append(change_row(firm, "shape", a, b, caps[lo]["ts"], first_new, old_run, new_run))
 
     # color changes within a shape (recolors), dated to the yearly window
     for run in runs:
@@ -235,6 +255,20 @@ def process_firm(firm: dict, known: dict) -> tuple[list[dict], list[dict]]:
             changes.append(change_row(firm, "color", a, b, a["capture_ts"], b["capture_ts"], old_seg, new_seg))
     changes.sort(key=lambda c: c["first_new_ts"])
     return obs, changes
+
+
+def live_anchor(ticker: str) -> dict | None:
+    """The firm's earliest confident live capture (data/live_observations.csv), as a series point."""
+    live = DATA / "live_observations.csv"
+    if not live.exists():
+        return None
+    rows = [r for r in read_csv(live) if r.get("ticker") == ticker and strong(r)]
+    if not rows:
+        return None
+    r = dict(min(rows, key=lambda x: x["obs_date"]))
+    r["capture_ts"] = r["obs_date"].replace("-", "") + "000000"
+    r["obs_type"] = "live"
+    return r
 
 
 def remove_previous(tickers: set[str]) -> None:
