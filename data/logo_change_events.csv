@@ -1,1 +1,16 @@
-ticker,source,date_lower,date_upper,phash_dist,color_dist,old_dominant_hue,new_dominant_hue,green_share_old,green_share_new,old_image,new_image
+ticker,source,date_lower,date_upper,phash_dist,color_dist,old_dominant_hue,new_dominant_hue,green_share_old,green_share_new,old_image,new_image,event_month,months_uncertain,green_shift,uspto_filing_lead_months,uspto_serial_no,uspto_intent_to_use,validated,notes
+IBM,wayback,2004-11-01,2004-12-04,31,0.4894,teal,neutral,0.0,0.0,data/logos/wayback/IBM/20020602_83c99bc6.gif,data/logos/wayback/IBM/20050601_33f382b2.gif,2004-12,1.1,0.0,-0.4,78532849,0,,
+IBM,wayback,2007-06-01,2007-07-01,42,0.0192,neutral,neutral,0.0,0.0,data/logos/wayback/IBM/20050601_33f382b2.gif,data/logos/wayback/IBM/20080602_46fa4604.gif,2007-07,1.0,0.0,0.2,77214726,0,,
+IBM,wayback,2011-04-03,2011-06-04,30,0.2313,neutral,blue,0.0,0.0049,data/logos/wayback/IBM/20080602_46fa4604.gif,data/logos/wayback/IBM/20110604_b24d04b0.jpg,2011-06,2.0,0.0049,-0.5,85350648,1,,
+IBM,wayback,2011-09-03,2011-10-01,24,0.4759,blue,red,0.0049,0.0,data/logos/wayback/IBM/20110604_b24d04b0.jpg,data/logos/wayback/IBM/20120602_902aefdb.png,2011-10,0.9,-0.0049,0.3,79111853,0,,
+IBM,wayback,2014-05-01,2014-06-01,24,0.5433,red,purple,0.0,0.1412,data/logos/wayback/IBM/20120602_902aefdb.png,data/logos/wayback/IBM/20140601_f2e31138.png,2014-06,1.0,0.1412,2.0,86237294,0,,
+IBM,wayback,2014-11-01,2014-12-01,16,0.5874,purple,teal,0.1412,0.0,data/logos/wayback/IBM/20140601_f2e31138.png,data/logos/wayback/IBM/20150601_e64a947b.png,2014-12,1.0,-0.1412,-1.8,86513837,1,,
+IBM,wayback,2015-10-01,2015-11-01,28,0.3428,teal,blue,0.0,0.0,data/logos/wayback/IBM/20150601_e64a947b.png,data/logos/wayback/IBM/20160601_a47e3440.png,2015-11,1.0,0.0,1.1,86771487,0,,
+IBM,wayback,2016-10-01,2016-11-01,32,0.2333,blue,orange,0.0,0.001,data/logos/wayback/IBM/20160601_a47e3440.png,data/logos/wayback/IBM/20170601_dffb178b.jpg,2016-11,1.0,0.001,1.4,79203188,0,,
+IBM,wayback,2017-11-01,2017-12-01,40,0.8857,orange,blue,0.001,0.0172,data/logos/wayback/IBM/20170601_dffb178b.jpg,data/logos/wayback/IBM/20180601_c8469e36.png,2017-12,1.0,0.0162,0.5,79232330,0,,
+IBM,wayback,2018-08-01,2018-09-01,30,0.8295,blue,neutral,0.0172,0.0002,data/logos/wayback/IBM/20180601_c8469e36.png,data/logos/wayback/IBM/20190601_5d7d3461.png,2018-09,1.0,-0.017,0.4,88087058,1,,
+IBM,wayback,2019-09-01,2019-10-01,32,0.018,neutral,neutral,0.0002,0.0124,data/logos/wayback/IBM/20190601_5d7d3461.png,data/logos/wayback/IBM/20200601_3b9fefe7.png,2019-10,1.0,0.012199999999999999,1.4,79275312,0,,
+IBM,wayback,2020-09-01,2020-10-01,26,0.0835,neutral,neutral,0.0124,0.0,data/logos/wayback/IBM/20200601_3b9fefe7.png,data/logos/wayback/IBM/20210601_126845b3.svg,2020-10,1.0,-0.0124,1.4,79314060,0,,
+IBM,wayback,2023-08-01,2023-09-01,32,0.5768,neutral,orange,0.0,0.0,data/logos/wayback/IBM/20230601_44120558.svg,data/logos/wayback/IBM/20240601_563184e7.jpg,2023-09,1.0,0.0,3.1,79377934,0,,
+IBM,wayback,2024-12-01,2025-04-01,30,0.5768,orange,neutral,0.0,0.0,data/logos/wayback/IBM/20240601_563184e7.jpg,data/logos/wayback/IBM/20250601_cb7f3325.png,2025-04,4.0,0.0,22.0,79377934,0,,
+IBM,wayback,2026-04-01,2026-05-01,36,0.9664,neutral,blue,0.0,0.0,data/logos/wayback/IBM/20250601_cb7f3325.png,data/logos/wayback/IBM/20260601_ef509fe7.webp,2026-05,1.0,0.0,,,,,
