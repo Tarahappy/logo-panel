@@ -167,17 +167,17 @@ def color_segments(run: list[dict]) -> list[list[dict]]:
 
 
 def closer_to_new(x: dict, old: dict, new: dict) -> bool | None:
+    """True if a capture shows the new logo, False if the old one, None if unclear (another variant,
+    a different page element, or no confident pick). Unclear captures are skipped, so the date window
+    may stay wide rather than be narrowed wrongly."""
     if not strong(x):
         return None
-    if x["sha1"] == new.get("sha1"):
+    is_new, is_old = same_shape(x, new), same_shape(x, old)
+    if is_new and not is_old:
         return True
-    if x["sha1"] == old.get("sha1"):
+    if is_old and not is_new:
         return False
-    d_old = phash_distance(x.get("phash", ""), old.get("phash", ""))
-    d_new = phash_distance(x.get("phash", ""), new.get("phash", ""))
-    if d_old is None or d_new is None:
-        return None
-    return d_new < d_old
+    return None
 
 
 def months_between(ts_a: str, ts_b: str) -> int:
@@ -229,10 +229,10 @@ def process_firm(firm: dict, known: dict) -> tuple[list[dict], list[dict]]:
         lo, hi = ts_index[a["capture_ts"]], ts_index.get(b["capture_ts"], len(caps))
         tried: set[int] = set()
         while hi - lo > 1:
-            mid = (lo + hi) // 2
-            while mid in tried and mid < hi - 1:
-                mid += 1
-            if mid in tried:
+            center = (lo + hi) // 2
+            order = sorted(range(lo + 1, hi), key=lambda i: abs(i - center))
+            mid = next((i for i in order if i not in tried), None)
+            if mid is None or len(tried) >= 12:
                 break
             tried.add(mid)
             r = grab_capture(firm, caps[mid], known, "refine")

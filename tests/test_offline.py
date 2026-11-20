@@ -204,3 +204,11 @@ def test_same_outline_different_inside_is_a_change():
     a = png(lambda d: (d.ellipse([20, 0, 100, 80], fill=(0, 112, 74, 255)), d.rectangle([40, 30, 80, 50], fill=(255, 255, 255, 255))), size=(120, 80))
     b = png(lambda d: (d.ellipse([20, 0, 100, 80], fill=(0, 112, 74, 255)), d.polygon([(60, 10), (90, 70), (30, 70)], fill=(255, 255, 255, 255))), size=(120, 80))
     assert phash_distance(compute_features(to_image(a))["phash"], compute_features(to_image(b))["phash"]) >= 12
+
+
+def test_unclear_capture_is_not_counted_as_new():
+    old, new = _mk(RED, "r", "2005"), _mk(GREEN, "g", "2012")
+    variant = _mk(BLUE_ON_WHITE, "b", "2007")  # a different element, neither old nor new
+    assert W.closer_to_new(variant, old, new) is None
+    assert W.closer_to_new(_mk(GREEN, "g2", "2011"), old, new) is True
+    assert W.closer_to_new(_mk(RED, "r2", "2008"), old, new) is False
