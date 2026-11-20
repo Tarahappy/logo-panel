@@ -31,12 +31,11 @@ SBUX) has run; the Wayback backfill then continues every night by itself.
   filings** with the new release year.
 - **Viewing logos:** download the repo (Code > Download ZIP) and open `reports/logo_timelines.html`.
 
-**Actions minutes.** A private repo gets 2,000 free minutes a month, shared across your repos.
-The backfill uses about 50 minutes a night (about 1,500 a month) and should take several weeks for
-500 firms; its log prints `Backfill complete` when done. The monthly snapshot uses about 30 minutes.
-If the CSR web panel's backfill is still running, the two together can exceed the free minutes.
-A public repository has no minute cap: run the backfill with a larger budget (for example 300) to
-finish in about a week.
+**Actions minutes.** The backfill checks the repository's visibility each night. While the repo is
+private (2,000 free minutes a month, shared across your repos) it collects for 50 minutes with 3 firms
+at a time; once the repo is public (no minute cap) it collects for about 5 hours with 4 firms at a
+time, which should finish the 500 firms in roughly a week. Its log prints `Backfill complete` when
+done. The monthly snapshot uses about 30 minutes.
 
 ## Files
 

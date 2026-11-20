@@ -9,9 +9,9 @@ on:
         description: "Optional: only these tickers (comma-separated), e.g. IBM,KO"
         required: false
       budget:
-        description: "Minutes of collection this run"
+        description: "Minutes of collection this run (blank = 300 if the repo is public, 50 if private)"
         required: false
-        default: "50"
+        default: ""
       redo:
         description: "Redo the listed tickers from scratch (only with tickers)"
         type: boolean
@@ -28,7 +28,7 @@ concurrency:
 jobs:
   backfill:
     runs-on: ubuntu-latest
-    timeout-minutes: 80
+    timeout-minutes: 340
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,14 +40,21 @@ jobs:
           sudo apt-get update -q && sudo apt-get install -y -q libcairo2
           pip install -r requirements.txt
       - name: Collect archived logos and date changes
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           cd scripts
+          # public repos have no Actions-minute cap: collect longer and with more parallel firms
+          PRIVATE=$(gh api "repos/${{ github.repository }}" --jq .private 2>/dev/null || echo true)
+          if [ "$PRIVATE" = "false" ]; then DEFAULT_BUDGET=300; WORKERS=4; else DEFAULT_BUDGET=50; WORKERS=3; fi
+          BUDGET="${{ github.event.inputs.budget }}"; BUDGET="${BUDGET:-$DEFAULT_BUDGET}"
+          echo "repo private=$PRIVATE budget=$BUDGET workers=$WORKERS"
           if [ -n "${{ github.event.inputs.tickers }}" ]; then
             REDO=""
             if [ "${{ github.event.inputs.redo }}" = "true" ]; then REDO="--redo"; fi
-            python wayback_logos.py --budget-minutes "${{ github.event.inputs.budget || 50 }}" --tickers "${{ github.event.inputs.tickers }}" $REDO
+            python wayback_logos.py --budget-minutes "$BUDGET" --workers "$WORKERS" --tickers "${{ github.event.inputs.tickers }}" $REDO
           else
-            python wayback_logos.py --budget-minutes "${{ github.event.inputs.budget || 50 }}"
+            python wayback_logos.py --budget-minutes "$BUDGET" --workers "$WORKERS"
           fi
       - name: Build panel
         run: cd scripts && python build_panel.py
