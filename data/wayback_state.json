@@ -1,10 +1,1872 @@
 {
+ "A": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "AAPL": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "ABBV": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 15,
+  "years_confident_logo": 13
+ },
+ "ABNB": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 18,
+  "years_confident_logo": 2
+ },
+ "ABT": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 22
+ },
+ "ACGL": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "ACN": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 12
+ },
+ "ADBE": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "ADI": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "ADM": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "ADP": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "ADSK": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "AEE": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 10
+ },
+ "AEP": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "AES": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 25,
+  "years_confident_logo": 14
+ },
+ "AFL": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "AIG": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "AIZ": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "AJG": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "AKAM": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "ALB": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 16
+ },
+ "ALGN": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 18
+ },
+ "ALL": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 16
+ },
+ "ALLE": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 18,
+  "years_confident_logo": 13
+ },
+ "AMAT": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 23
+ },
+ "AMCR": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 4
+ },
+ "AMD": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "AME": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "AMGN": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "AMP": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 25,
+  "years_confident_logo": 21
+ },
+ "AMT": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 25
+ },
+ "AMZN": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 16
+ },
+ "ANET": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "AON": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 9
+ },
+ "AOS": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "APA": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "APD": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "APH": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "APO": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 21,
+  "years_confident_logo": 12
+ },
+ "APP": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 16,
+  "years_confident_logo": 9
+ },
+ "APTV": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 10
+ },
+ "ARE": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "ARES": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 23,
+  "years_confident_logo": 20
+ },
+ "ATO": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "AVGO": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "AVY": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 25
+ },
+ "AWK": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "AXON": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 22,
+  "years_confident_logo": 11
+ },
+ "AXP": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "AZO": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "BA": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "BAC": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "BALL": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "BAX": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "BBY": {
+  "changes": 7,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 26
+ },
+ "BDX": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "BE": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 21,
+  "years_confident_logo": 15
+ },
+ "BEN": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 10
+ },
+ "BF.B": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 10
+ },
+ "BG": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 16
+ },
+ "BIIB": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "BKNG": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 9,
+  "years_confident_logo": 9
+ },
+ "BKR": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "BLK": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "BMY": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "BNY": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 20,
+  "years_confident_logo": 11
+ },
+ "BR": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 22,
+  "years_confident_logo": 15
+ },
+ "BRK.B": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 10
+ },
+ "BRO": {
+  "changes": 6,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 19
+ },
+ "BSX": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 25,
+  "years_confident_logo": 18
+ },
+ "BX": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 11
+ },
+ "BXP": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 24,
+  "years_confident_logo": 5
+ },
+ "C": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 6
+ },
+ "CAH": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 21
+ },
+ "CARR": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 7,
+  "years_confident_logo": 7
+ },
+ "CASY": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "CAT": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "CB": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "CBOE": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "CBRE": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 7
+ },
+ "CCI": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "CCL": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "CDNS": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "CDW": {
+  "changes": 6,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "CEG": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "CF": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "CFG": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "CHD": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 23
+ },
+ "CHRW": {
+  "changes": 8,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "CHTR": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "CI": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "CIEN": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "CINF": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "CL": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "CLX": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 23,
+  "years_confident_logo": 23
+ },
+ "CMCSA": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 24,
+  "years_confident_logo": 8
+ },
+ "CME": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 16
+ },
+ "CMG": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "CMI": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 7
+ },
+ "CMS": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "CNC": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "CNP": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 25,
+  "years_confident_logo": 20
+ },
+ "COF": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 12
+ },
+ "COHR": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "COIN": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 17,
+  "years_confident_logo": 11
+ },
+ "COO": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "COP": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 23
+ },
+ "COR": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 11,
+  "years_confident_logo": 5
+ },
+ "COST": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "CPAY": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 25
+ },
+ "CPRT": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "CPT": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 18
+ },
+ "CRH": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 24
+ },
+ "CRL": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "CRM": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 25
+ },
+ "CRWD": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 15,
+  "years_confident_logo": 14
+ },
+ "CSCO": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "CSGP": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 24,
+  "years_confident_logo": 18
+ },
+ "CSX": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 25
+ },
+ "CTAS": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 25
+ },
+ "CTSH": {
+  "changes": 6,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "CVNA": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 16,
+  "years_confident_logo": 6
+ },
+ "CVS": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 17,
+  "years_confident_logo": 13
+ },
+ "CVX": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 7
+ },
+ "D": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 16,
+  "years_confident_logo": 12
+ },
+ "DAL": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 6
+ },
+ "DASH": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 18,
+  "years_confident_logo": 3
+ },
+ "DD": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "DDOG": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 17,
+  "years_confident_logo": 11
+ },
+ "DE": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 2
+ },
+ "DECK": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "DELL": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 16,
+  "years_confident_logo": 9
+ },
+ "DG": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "DGX": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "DHI": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "DHR": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 23
+ },
+ "DIS": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 10
+ },
+ "DLR": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 24,
+  "years_confident_logo": 13
+ },
+ "DLTR": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 10
+ },
+ "DOC": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "DOV": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "DOW": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "DPZ": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 5
+ },
+ "DRI": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "DTE": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "DUK": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "DVA": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "DVN": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "DXCM": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 24,
+  "years_confident_logo": 17
+ },
+ "EBAY": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "ECHO": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 9
+ },
+ "ECL": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 25
+ },
+ "ED": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "EFX": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "EG": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 15
+ },
+ "EIX": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 26
+ },
+ "EL": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "ELV": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 6,
+  "years_confident_logo": 4
+ },
+ "EME": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "EMR": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "EOG": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "EQIX": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "EQT": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "ERIE": {
+  "changes": 6,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "ES": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 22,
+  "years_confident_logo": 9
+ },
+ "ESS": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 20,
+  "years_confident_logo": 11
+ },
+ "ETN": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 10,
+  "years_confident_logo": 8
+ },
+ "ETR": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "EVRG": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 23,
+  "years_confident_logo": 5
+ },
+ "EW": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 11,
+  "years_confident_logo": 7
+ },
+ "EXC": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "EXE": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "EXPD": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 7
+ },
+ "EXPE": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 16,
+  "years_confident_logo": 13
+ },
+ "EXR": {
+  "changes": 6,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "F": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "FANG": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 19,
+  "years_confident_logo": 14
+ },
+ "FAST": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "FCX": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "FDS": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "FDX": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "FDXF": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "FE": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "FERG": {
+  "changes": 7,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 23
+ },
+ "FFIV": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "FICO": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 14
+ },
+ "FIS": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 0,
+  "years_confident_logo": 0
+ },
+ "FISV": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "FITB": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "FIX": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "FLEX": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "FOXA": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 17,
+  "years_confident_logo": 5
+ },
+ "FRT": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "FSLR": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 11
+ },
+ "FTNT": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 25,
+  "years_confident_logo": 14
+ },
+ "FTV": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 16,
+  "years_confident_logo": 13
+ },
+ "GD": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 12
+ },
+ "GDDY": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 19
+ },
+ "GE": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 13,
+  "years_confident_logo": 8
+ },
+ "GEHC": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 8
+ },
+ "GEN": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 16,
+  "years_confident_logo": 7
+ },
+ "GEV": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 5,
+  "years_confident_logo": 5
+ },
+ "GILD": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "GIS": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "GL": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 27
+ },
+ "GLW": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 26
+ },
+ "GM": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 16
+ },
+ "GNRC": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 25
+ },
+ "GOOGL": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 25
+ },
+ "GPC": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 21,
+  "years_confident_logo": 14
+ },
+ "GPN": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 11
+ },
+ "GRMN": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 12
+ },
+ "GS": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "GWW": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "HAL": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 25
+ },
+ "HAS": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 10,
+  "years_confident_logo": 5
+ },
+ "HBAN": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "HCA": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 23
+ },
+ "HD": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 9
+ },
+ "HIG": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "HII": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 22,
+  "years_confident_logo": 17
+ },
+ "HLT": {
+  "changes": 6,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 23
+ },
+ "HON": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "HONA": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 25,
+  "years_confident_logo": 15
+ },
+ "HOOD": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "HPE": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "HPQ": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "HRL": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 23
+ },
+ "HSIC": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "HST": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 23,
+  "years_confident_logo": 8
+ },
+ "HSY": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 11,
+  "years_confident_logo": 11
+ },
+ "HUBB": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 13
+ },
+ "HUM": {
+  "changes": 5,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "HWM": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "IBKR": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 18
+ },
  "IBM": {
   "changes": 2,
   "on": "2026-11-20",
   "status": "done",
   "years": 27,
   "years_confident_logo": 11
+ },
+ "ICE": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 21,
+  "years_confident_logo": 11
+ },
+ "IDXX": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "IEX": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 18
+ },
+ "IFF": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 11
+ },
+ "ILMN": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "INCY": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 26
+ },
+ "INTC": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 16
+ },
+ "INTU": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "INVH": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 15,
+  "years_confident_logo": 9
+ },
+ "IP": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 25
+ },
+ "IQV": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 13,
+  "years_confident_logo": 12
+ },
+ "IR": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 19,
+  "years_confident_logo": 17
+ },
+ "IRM": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 24
+ },
+ "ISRG": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 4
+ },
+ "IT": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 17
+ },
+ "ITW": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 6
+ },
+ "IVZ": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 13
+ },
+ "J": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 13
+ },
+ "JBHT": {
+  "changes": 4,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 21
+ },
+ "JBL": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 20
+ },
+ "JCI": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "JKHY": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "JNJ": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 22
+ },
+ "JPM": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 26,
+  "years_confident_logo": 16
+ },
+ "KDP": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 9,
+  "years_confident_logo": 8
+ },
+ "KEY": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 3
+ },
+ "KEYS": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 21,
+  "years_confident_logo": 10
+ },
+ "KHC": {
+  "changes": 0,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 12,
+  "years_confident_logo": 12
+ },
+ "KIM": {
+  "changes": 3,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 15
+ },
+ "KKR": {
+  "changes": 2,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 14
+ },
+ "KLAC": {
+  "changes": 1,
+  "on": "2026-11-21",
+  "status": "done",
+  "years": 27,
+  "years_confident_logo": 5
  },
  "KO": {
   "changes": 2,
