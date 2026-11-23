@@ -12,7 +12,7 @@ with official homepages from Wikidata. Firms that later leave the index stay in 
 | Stream | Schedule | What it does |
 |---|---|---|
 | Live snapshot | 1st of each month | Captures each firm's current homepage logo. The first snapshot (Nov 2026) is already in `data/` |
-| Wayback backfill | Nightly until done | Archived homepages from 2000: one capture per year, then bisection between captures to date each logo change to the month |
+| Wayback backfill | Done Nov 22, 2026 (nightly job now idle) | Archived homepages from 2000: one capture per year, then bisection between captures to date each logo change to the month |
 | USPTO design marks | Once, then yearly | All logo trademarks filed by sample firms: filing date, intent-to-use flag, color claims, design codes. Already collected (Nov 2026) from the 2023 release, which covers filings through March 2024: 46,167 design marks for 452 firms |
 | Sample refresh | Quarterly | Updates the S&P 500 list and homepages, keeping firms that left |
 
@@ -21,7 +21,12 @@ with official homepages from Wikidata. Firms that later leave the index stay in 
 Done on Nov 20, 2026: this repository (`Tarahappy/logo-panel`, public since Nov 20) holds the code and data, and
 its four workflows are on. Each workflow asks GitHub for permission to save its results, so the
 repository's default workflow permission does not need changing. The four-firm test (IBM, KO, PEP,
-SBUX) has run; the Wayback backfill then continues every night by itself.
+SBUX) has run, and the Wayback backfill finished all 500 firms on Nov 22, 2026: 1,021 candidate
+logo changes (914 shape, 107 color) at 422 firms, 628 of them with a USPTO design-mark filing
+within 24 months. These are candidates, not confirmed changes; fill the `validated` column of
+`data/logo_change_events.csv` by hand. Candidates dated 2026 (77) deserve extra care, since they
+compare the live logo with the last archived one and can reflect extraction differences rather than
+a redesign. The nightly backfill now finds nothing to do and exits within a minute.
 
 - **Run something now:** Actions tab, pick a workflow, **Run workflow**. The backfill accepts a ticker
   list, a time budget, and a redo box (redo the listed tickers from scratch).
@@ -33,9 +38,8 @@ SBUX) has run; the Wayback backfill then continues every night by itself.
 
 **Actions minutes.** The backfill checks the repository's visibility each night. While the repo is
 private (2,000 free minutes a month, shared across your repos) it collects for 50 minutes with 3 firms
-at a time; once the repo is public (no minute cap) it collects for about 5 hours with 4 firms at a
-time, which should finish the 500 firms in roughly a week. Its log prints `Backfill complete` when
-done. The monthly snapshot uses about 30 minutes.
+at a time; while public (no minute cap) it collects for about 5 hours with 4 firms at a time. Public,
+it finished the 500 firms in three runs. The monthly snapshot uses about 30 minutes.
 
 ## Files
 
